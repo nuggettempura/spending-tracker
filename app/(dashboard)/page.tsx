@@ -1,3 +1,4 @@
+import { mockBalancedata } from "@/interfaces/mock";
 
 function formatMoney(amount: number, isNegative: boolean) {
     const formatted = Math.abs(amount).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });

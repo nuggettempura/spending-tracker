@@ -1,11 +1,11 @@
-const mockBalancedata = {
+export const mockBalancedata = {
   balance: 12408.62,
   in: 4850.0,
   out: 1240.0,
   title: "Total Balance",
 };
 
-const mockTransactionData = [
+export const mockTransactionData = [
   {
     numbers: -84.23,
     time: "Today",

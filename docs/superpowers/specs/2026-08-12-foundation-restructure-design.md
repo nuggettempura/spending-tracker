@@ -8,6 +8,15 @@ understand *why* an app is structured the way it is, not just to have working co
 
 Stack: Next.js App Router, Supabase (auth + DB, decided but not yet wired up).
 
+Product intent: this is meant to be daily-driven on a phone, not just viewed in a
+desktop browser during development — the author intends to use it themselves as
+a real user would, and is keeping open the possibility of eventually shipping it
+for others to install on their phones. This reinforces the mobile-first framing
+(Sidebar for desktop, MobileNav for phone) and means real-device testing matters
+more than it would for a purely desktop/internal tool; it doesn't change this
+sub-project's scope, but should inform later decisions (e.g. PWA manifest/install
+behavior, touch target sizing, offline considerations) when they come up.
+
 This is sub-project 1 of 3:
 1. **Foundation restructure** (this spec) — route groups, fix existing bugs, decide
    the purpose of placeholder folders.

@@ -1,5 +1,6 @@
 "use client"
 
+import { logout } from "@/lib/actions/auth";
 import { NAV_ITEMS } from "@/lib/nav-config";
 import Link from "next/link";
 import { usePathname } from "next/navigation"
@@ -22,6 +23,15 @@ export function MobileNav() {
                     {item.label}
                 </Link>
             ))}
+
+            <form action={logout}>
+                <button
+                    type="submit"
+                    className="px-2 py-1.5 bg-blue-600 text-white border-blue-600 rounded-md"
+                >
+                    Logout
+                </button>
+            </form>
         </nav>
     )
 }

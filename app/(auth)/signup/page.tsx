@@ -18,7 +18,7 @@ export default function SignUp() {
                 </label>
                 <input
                     id="emailInput"
-                    className="border border-slate-400 rounded-sm"
+                    className="border border-slate-400 rounded-sm text-white px-2 py-1"
                     type="email"
                     name="email"
                 />
@@ -32,7 +32,7 @@ export default function SignUp() {
                 </label>
                 <input
                     id="passwordInput"
-                    className="border border-slate-400 rounded-sm"
+                    className="border border-slate-400 rounded-sm text-white px-2 py-1"
                     type="password"
                     name="password"
                 />
@@ -46,9 +46,23 @@ export default function SignUp() {
                 </label>
                 <input
                     id="passwordCheckInput"
-                    className="border border-slate-400 rounded-sm"
+                    className="border border-slate-400 rounded-sm text-white px-2 py-1"
                     type="password"
                     name="passwordCheck"
+                />
+            </div>
+            <div className="flex flex-col items-start gap-2">
+                <label
+                    className="text-slate-500"
+                    htmlFor="displayName"
+                >
+                    Display Name
+                </label>
+                <input
+                    id="displayName"
+                    className="border border-slate-400 rounded-sm text-white px-2 py-1"
+                    type="text"
+                    name="displayName"
                 />
             </div>
             {state?.error && <p className="text-red-600 font-semibold">{state.error}</p>}

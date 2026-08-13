@@ -24,7 +24,7 @@ export function Sidebar() {
                         href={item.href}
                         className={`flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-slate-800 hover:text-white ${pathname === item.href || pathname.startsWith(item.href + "/") ? "bg-slate-800 text-white" : "text-slate-300"}`}
                     >
-                        <item.icon className="mr-3 h-5 w-5 flex-shrink-0" aria-hidden="true" />
+                        <item.icon className="mr-3 h-5 w-5 shrink-0" aria-hidden="true" />
                         {item.label}
                     </Link>
                 ))}

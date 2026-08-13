@@ -1,25 +1,13 @@
 "use client"
 
-import {
-    useState
-} from "react"
+import { signUp } from "@/lib/actions/auth"
+import { useActionState } from "react"
 
 export default function SignUp() {
+    const [state, formAction, pending] = useActionState(signUp, undefined);
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [passwordCheck, setPasswordCheck] = useState("");
-    const handleSignUp = () => {
-        if (passwordCheck === password) {
-            console.log("the password matches")
-            return
-        } else {
-            console.log("the password does not match")
-            return
-        }
-    }
     return (
-        <div className="flex flex-col justify-center items-center gap-2 border border-slate-300 rounded-md p-4 bg-[#1F305e]">
+        <form action={formAction} className="flex flex-col justify-center items-center gap-2 border border-slate-300 rounded-md p-4 bg-[#1F305e]">
             <p className="text-xl text-slate-200 mb-4">Sign Up</p>
             <div className="flex flex-col items-start gap-2">
                 <label
@@ -32,8 +20,7 @@ export default function SignUp() {
                     id="emailInput"
                     className="border border-slate-400 rounded-sm"
                     type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    name="email"
                 />
             </div>
             <div className="flex flex-col items-start gap-2">
@@ -47,8 +34,7 @@ export default function SignUp() {
                     id="passwordInput"
                     className="border border-slate-400 rounded-sm"
                     type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    name="password"
                 />
             </div>
             <div className="flex flex-col items-start gap-2">
@@ -62,16 +48,16 @@ export default function SignUp() {
                     id="passwordCheckInput"
                     className="border border-slate-400 rounded-sm"
                     type="password"
-                    value={passwordCheck}
-                    onChange={(e) => setPasswordCheck(e.target.value)}
+                    name="passwordCheck"
                 />
             </div>
+            {state?.error && <p className="text-red-600 font-semibold">{state.error}</p>}
             <button
                 className="mt-4 px-4 py-2 border bg-green-500 border-green-600 rounded-md text-white hover:bg-green-800 hover:border-green-800 hover:text-slate-100 cursor-pointer transition-all"
-                onClick={handleSignUp}
+                type="submit"
             >
-                Sign Up
+                {pending ? "Pending" : "Sign Up"}
             </button>
-        </div>
+        </form>
     )
 }

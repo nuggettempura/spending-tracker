@@ -19,18 +19,19 @@ export default function CreateTransactionForm({
     const [state, formAction, pending] = useActionState(createTransaction, undefined);
 
     return (
-        <form action={formAction} className="flex flex-col gap-2 max-w-sm">
+        <form action={formAction} className="p-4 rounded-md bg-slate-900 flex flex-col gap-2 max-w-sm text-slate-300">
+            <h2 className="text-xl font-semibold">Add Transactions</h2>
             <div className="flex flex-col gap-1">
                 <label htmlFor="bank_account_id">Account</label>
-                <select id="bank_account_id" name="bank_account_id" className="border border-slate-400 rounded-sm">
+                <select id="bank_account_id" name="bank_account_id" className="px-2 py-1.5 border border-slate-400 rounded-sm">
                     {accounts.map((account) => (
-                        <option key={account.id} value={account.id}>{account.name}</option>
+                        <option key={account.id} value={account.id} className="hover:text-black">{account.name}</option>
                     ))}
                 </select>
             </div>
             <div className="flex flex-col gap-1">
                 <label htmlFor="category_id">Category</label>
-                <select id="category_id" name="category_id" className="border border-slate-400 rounded-sm">
+                <select id="category_id" name="category_id" className="px-2 py-1.5 border border-slate-400 rounded-sm">
                     <option value="">Uncategorized</option>
                     {categories.map((category) => (
                         <option key={category.id} value={category.id}>{category.name}</option>
@@ -39,7 +40,7 @@ export default function CreateTransactionForm({
             </div>
             <div className="flex flex-col gap-1">
                 <label htmlFor="type">Type</label>
-                <select id="type" name="type" className="border border-slate-400 rounded-sm">
+                <select id="type" name="type" className="px-2 py-1.5 border border-slate-400 rounded-sm">
                     {TRANSACTION_TYPES.map((type) => (
                         <option key={type} value={type}>{type}</option>
                     ))}
@@ -52,7 +53,7 @@ export default function CreateTransactionForm({
                     step="0.01"
                     id="amount"
                     name="amount"
-                    className="border border-slate-400 rounded-sm"
+                    className="px-2 py-1.5 border border-slate-400 rounded-sm"
                 />
             </div>
             <div className="flex flex-col gap-1">
@@ -61,7 +62,7 @@ export default function CreateTransactionForm({
                     type="text"
                     id="description"
                     name="description"
-                    className="border border-slate-400 rounded-sm"
+                    className="px-2 py-1.5 border border-slate-400 rounded-sm"
                 />
             </div>
             <div className="flex flex-col gap-1">
@@ -71,7 +72,7 @@ export default function CreateTransactionForm({
                     id="transaction_date"
                     name="transaction_date"
                     defaultValue={today()}
-                    className="border border-slate-400 rounded-sm"
+                    className="px-2 py-1.5 border border-slate-400 rounded-sm"
                 />
             </div>
             {state?.error && <p className="text-red-600 font-semibold">{state.error}</p>}

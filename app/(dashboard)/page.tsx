@@ -38,28 +38,28 @@ export default async function DashboardPage() {
                     </div>
                 )}
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center mt-4 mb-2">
                 <p className="font-semibold">Recent transactions</p>
                 <Link
                     href="/transactions"
-                    className="border-transparent rounded-md px-3 py-1.5 font-slate-300 hover:bg-green-700 hover:text-white hover:border-green-700"
+                    className="bg-green-500 border-green-500 text-gray-700 rounded-md px-3 py-1.5 font-slate-300 text-sm hover:bg-green-700 hover:text-white hover:border-green-700"
                 >
                     + Add
                 </Link>
             </div>
-            <div className="p-2">
+            <div className="my-2">
                 {recentTransactions && recentTransactions.length > 0 ? (
                     <ul className="space-y-2">
                         {recentTransactions.map((transaction) => (
                             <li
                                 key={transaction.id}
-                                className="border border-slate-300 rounded-md p-3 flex justify-between items-center"
+                                className={`border border-slate-300 rounded-md p-3 flex justify-between items-center ${transaction.type === "income" ? "border-green-500 bg-green-500 text-slate-300" : "border-red-600 bg-red-600 text-white"}`}
                             >
                                 <div>
                                     <p>{transaction.bank_accounts?.name}</p>
-                                    <p className="text-slate-400 text-sm">{transaction.categories?.name ?? "Uncategorized"}</p>
+                                    <p className="text-slate-100 text-sm">{transaction.categories?.name ?? "Uncategorized"}</p>
                                 </div>
-                                <p className={transaction.type === "income" ? "text-green-600" : "text-red-600"}>
+                                <p className={transaction.type === "income" ? "text-blue-600" : "text-white"}>
                                     {transaction.type === "income" ? "+" : "-"}${transaction.amount}
                                 </p>
                             </li>

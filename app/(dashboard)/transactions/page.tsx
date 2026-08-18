@@ -23,7 +23,7 @@ export default async function TransactionPage() {
                     {transactions.map((transaction) => (
                         <li
                             key={transaction.id}
-                            className="border border-slate-300 rounded-md p-3 flex flex-col items-start justify-center"
+                            className="bg-slate-900 text-slate-300 border border-slate-300 rounded-md p-4 flex flex-col items-start justify-center"
                         >
                             <p className={transaction.type === "income" ? "text-green-600" : "text-red-600"}>
                                 {transaction.type === "income" ? "+" : "-"}${transaction.amount}

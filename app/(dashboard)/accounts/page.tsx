@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import CreateAccountForm from "./CreateAccountForm";
-
+import AccountRow from "./AccountRow";
 
 export default async function AccountsPage() {
 
@@ -20,13 +20,13 @@ export default async function AccountsPage() {
             {accounts && accounts.length > 0 ? (
                 <ul className="space-y-2 mb-6">
                     {accounts.map((account) => (
-                        <li
+                        <AccountRow
                             key={account.id}
-                            className="border border-slate-300 rounded-md p-3 flex justify-between"
-                        >
-                            <span>{account.name} <span className="text-slate-400 text-sm">({account.account_type})</span></span>
-                            <span>${account.current_balance.toFixed(2)}</span>
-                        </li>
+                            accountId={account.id}
+                            name={account.name}
+                            accountType={account.account_type}
+                            currentBalance={account.current_balance}
+                        />
                     ))}
                 </ul>
             ) : (

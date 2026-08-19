@@ -32,7 +32,7 @@ export async function createAccount(
     return { error: error.message };
   }
 
-  redirect("/accounts");
+  redirect(`/accounts?success=${encodeURIComponent("Account created")}`);
 }
 
 export async function updateAccount(
@@ -69,7 +69,8 @@ export async function deleteAccount(
   if (error) {
     if (error.code === "23503") {
       return {
-        error: "Can't delete an account that still has transactions on it. Delete those first.",
+        error:
+          "Can't delete an account that still has transactions on it. Delete those first.",
       };
     }
     return { error: error.message };

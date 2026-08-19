@@ -1,12 +1,20 @@
 "use client"
 
+import useToast from "@/components/toast/useToast";
 import { createAccount } from "@/lib/actions/accounts"
-import { useActionState } from "react"
+import { useActionState, useEffect } from "react"
 
 const ACCOUNT_TYPES = ["bank", "ewallet", "brokerage", "cash", "other"];
 
 export default function CreateAccountForm() {
     const [state, formAction, pending] = useActionState(createAccount, undefined);
+    const { showToast } = useToast();
+
+    useEffect(() => {
+        if (state?.error) {
+            showToast(state.error, "error");
+        }
+    }, [state, showToast]);
 
     return (
         <form action={formAction} className="flex flex-col gap-2 max-w-sm">

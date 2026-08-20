@@ -1,22 +1,30 @@
 "use client"
 
+import useToast from "@/components/toast/useToast";
 import { createCategories } from "@/lib/actions/categories";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 
 const CATEGORY_TYPE = ["income", "expense"]
 
 export default function CreateCategoryForm() {
     const [state, formAction, pending] = useActionState(createCategories, undefined);
+    const { showToast } = useToast();
+
+    useEffect(() => {
+        if (state?.error) {
+            showToast(state.error, "error")
+        }
+    }, [showToast, state]);
 
     return (
         <form action={formAction} className="flex flex-col gap-2 max-w-sm">
             <div className="flex flex-col gap-1">
                 <label htmlFor="categoryName">Category Name</label>
-                <input id="categoryName" name="categoryName" type="text" className="border border-slate-400 rounded-sm" />
+                <input id="categoryName" name="categoryName" type="text" className="px-2 py-1.5 border border-slate-400 rounded-sm" />
             </div>
             <div className="flex flex-col gap-1">
                 <label htmlFor="type">Type</label>
-                <select name="type" id="type" className="border border-slate-400 rounded-sm">
+                <select name="type" id="type" className="px-2 py-1.5 border border-slate-400 rounded-sm">
                     {CATEGORY_TYPE.map((category) => (
                         <option key={category} value={category}>{category}</option>
                     ))}

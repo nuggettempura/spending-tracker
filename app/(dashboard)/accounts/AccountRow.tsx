@@ -1,7 +1,8 @@
 "use client";
 
+import useToast from "@/components/toast/useToast";
 import { deleteAccount, updateAccount } from "@/lib/actions/accounts";
-import { useActionState, useRef } from "react";
+import { useActionState, useEffect, useRef } from "react";
 
 const ACCOUNT_TYPES = ["bank", "ewallet", "brokerage", "cash", "other"];
 
@@ -21,6 +22,17 @@ export default function AccountRow({ accountId, name, accountType, currentBalanc
     const deleteAccountWithId = deleteAccount.bind(null, accountId);
     const [deleteState, deleteFormAction, deletePending] = useActionState(deleteAccountWithId, undefined);
 
+    const { showToast } = useToast();
+
+    useEffect(() => {
+        if (deleteState?.error) {
+            showToast(deleteState.error, "error");
+        }
+        if (updateState?.error) {
+            showToast(updateState.error, "error");
+        }
+    }, [deleteState, updateState, showToast]);
+
     return (
         <li className="border border-slate-300 rounded-md p-3 flex justify-between items-center">
             <div>
@@ -29,7 +41,7 @@ export default function AccountRow({ accountId, name, accountType, currentBalanc
             <div className="flex items-center gap-2">
                 <span>${currentBalance.toFixed(2)}</span>
                 <button onClick={() => dialogRef.current?.showModal()} className="text-sm px-3 py-1.5 bg-blue-500 border-blue-500 rounded-sm text-white cursor-pointer">
-                    Edit
+                    {updatePending ? "Updating..." : "Update"}
                 </button>
                 <form action={deleteFormAction}>
                     <button type="submit" disabled={deletePending} className="text-sm px-3 py-1.5 bg-red-500 border-red-500 rounded-sm text-white cursor-pointer">

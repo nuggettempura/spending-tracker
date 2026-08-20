@@ -1,7 +1,8 @@
 "use client";
 
+import useToast from "@/components/toast/useToast";
 import { createTransaction } from "@/lib/actions/transactions";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 
 const TRANSACTION_TYPES = ["income", "expense"];
 
@@ -17,6 +18,13 @@ export default function CreateTransactionForm({
     categories: { id: string; name: string }[];
 }) {
     const [state, formAction, pending] = useActionState(createTransaction, undefined);
+    const { showToast } = useToast();
+
+    useEffect(() => {
+        if (state?.error) {
+            showToast(state.error, "error");
+        }
+    }, [showToast, state]);
 
     return (
         <form action={formAction} className="p-4 rounded-md bg-slate-900 flex flex-col gap-2 max-w-sm text-slate-300">

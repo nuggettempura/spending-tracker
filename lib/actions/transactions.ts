@@ -37,5 +37,77 @@ export async function createTransaction(
     return { error: error.message };
   }
 
-  redirect("/transactions");
+  redirect(
+    `/transactions?success=${encodeURIComponent("Transaction created")}`,
+  );
+}
+
+export async function updateTransaction(
+  id: string,
+  _prevData: { error?: string } | undefined,
+  formData: FormData,
+) {
+  const bankAccountId = formData.get("bank_account_id") as string;
+  const categoryId = formData.get("category_id") as string;
+  const amount = Number(formData.get("amount"));
+  const type = formData.get("type") as string;
+  const description = formData.get("description") as string;
+  const transactionDate = formData.get("transaction_date") as string;
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { error: "You must be logged in to add a transaction" };
+  }
+
+  const { error } = await supabase
+    .from("transactions")
+    .update({
+      bank_account_id: bankAccountId,
+      category_id: categoryId || null,
+      amount,
+      type,
+      description,
+      transaction_date: transactionDate,
+    })
+    .eq("id", id);
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  redirect(
+    `/transactions?success=${encodeURIComponent("Transaction updated")}`,
+  );
+}
+
+export async function deleteTransaction(
+  id: string,
+  _prevData: { error?: string } | undefined,
+  _formData: FormData,
+) {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return {
+      error: "You must be logged in to perform a delete on this transaction",
+    };
+  }
+
+  const { error } = await supabase.from("transactions").delete().eq("id", id);
+
+  if (error) {
+    return { error: error?.message, code: error?.code };
+  }
+
+  redirect(
+    `/transactions?success=${encodeURIComponent("Transaction deleted")}`,
+  );
 }

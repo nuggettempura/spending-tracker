@@ -54,7 +54,7 @@ export async function updateAccount(
     return { error: error.message };
   }
 
-  redirect("/accounts");
+  redirect(`/accounts?success=${encodeURIComponent("Account updated")}`);
 }
 
 export async function deleteAccount(

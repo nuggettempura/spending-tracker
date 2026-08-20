@@ -1,9 +1,13 @@
 import { createClient } from "@/lib/supabase/server";
 import CreateCategoryForm from "./CreateCategoryForm";
+import CategoryRow from "./CategoryRox";
+import { CategoriesType } from "@/interfaces/categories";
 
 export default async function CategoriesPage() {
     const supabase = await createClient();
     const { data: categories, error } = await supabase.from("categories").select("*")
+
+    const types = ["income", "expense"] as CategoriesType
 
     return (
         <div className="p-5 md:p-8">
@@ -16,12 +20,13 @@ export default async function CategoriesPage() {
             {categories && categories.length > 0 ? (
                 <ul className="space-y-2 mb-6">
                     {categories.map((category) => (
-                        <li
+                        <CategoryRow
                             key={category.id}
-                            className="border border-slate-300 rounded-md p-3 flex justify-between"
-                        >
-                            <span>{category.name}</span><span className="text-slate-400">{category.type}</span>
-                        </li>
+                            categoryId={category.id}
+                            categoryName={category.name}
+                            categoryType={category.type}
+                            categoryTypeDropdown={types}
+                        />
                     ))}
                 </ul>
             ) : (

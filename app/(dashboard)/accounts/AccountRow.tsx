@@ -1,5 +1,6 @@
 "use client";
 
+import useLoading from "@/components/loading/useLoading";
 import useToast from "@/components/toast/useToast";
 import { deleteAccount, updateAccount } from "@/lib/actions/accounts";
 import { useActionState, useEffect, useRef } from "react";
@@ -23,6 +24,7 @@ export default function AccountRow({ accountId, name, accountType, currentBalanc
     const [deleteState, deleteFormAction, deletePending] = useActionState(deleteAccountWithId, undefined);
 
     const { showToast } = useToast();
+    const { startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         if (deleteState?.error) {
@@ -32,6 +34,23 @@ export default function AccountRow({ accountId, name, accountType, currentBalanc
             showToast(updateState.error, "error");
         }
     }, [deleteState, updateState, showToast]);
+
+    useEffect(() => {
+        if (updatePending) {
+            startLoading()
+        } else {
+            stopLoading()
+        }
+    }, [updatePending, startLoading, stopLoading]);
+
+    useEffect(() => {
+        if (deletePending) {
+            startLoading()
+        } else {
+            stopLoading()
+        }
+    }, [deletePending, startLoading, stopLoading]);
+
 
     return (
         <li className="border border-slate-300 rounded-md p-3 flex justify-between items-center">

@@ -1,5 +1,6 @@
 "use client"
 
+import useLoading from "@/components/loading/useLoading";
 import useToast from "@/components/toast/useToast";
 import { createAccount } from "@/lib/actions/accounts"
 import { useActionState, useEffect } from "react"
@@ -9,6 +10,15 @@ const ACCOUNT_TYPES = ["bank", "ewallet", "brokerage", "cash", "other"];
 export default function CreateAccountForm() {
     const [state, formAction, pending] = useActionState(createAccount, undefined);
     const { showToast } = useToast();
+    const { startLoading, stopLoading } = useLoading();
+
+    useEffect(() => {
+        if (pending) {
+            startLoading()
+        } else {
+            stopLoading()
+        }
+    }, [pending, startLoading, stopLoading]);
 
     useEffect(() => {
         if (state?.error) {

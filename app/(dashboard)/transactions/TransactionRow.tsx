@@ -1,5 +1,6 @@
 "use client"
 
+import useLoading from "@/components/loading/useLoading";
 import useToast from "@/components/toast/useToast";
 import { AccountDropdownOption } from "@/interfaces/accounts";
 import { CategoriesDropdownOption } from "@/interfaces/categories";
@@ -32,6 +33,7 @@ export default function TransactionRow({ accountId, accountsDropdown, account, c
     const [deleteState, deleteFormAction, deletePending] = useActionState(deleteTransactionWithId, undefined);
 
     const { showToast } = useToast();
+    const { startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         if (updateState?.error) {
@@ -42,6 +44,22 @@ export default function TransactionRow({ accountId, accountsDropdown, account, c
             showToast(deleteState.error, "error");
         }
     }, [deleteState, updateState, showToast])
+
+    useEffect(() => {
+        if (updatePending) {
+            startLoading();
+        } else {
+            stopLoading();
+        }
+    }, [updatePending, startLoading, stopLoading]);
+
+    useEffect(() => {
+        if (deletePending) {
+            startLoading();
+        } else {
+            stopLoading();
+        }
+    }, [stopLoading, startLoading, deletePending])
 
     return (
         <li className="border border-slate-900 bg-slate-900 rounded-md p-3 flex justify-between items-center">

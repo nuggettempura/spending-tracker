@@ -1,5 +1,6 @@
 "use client";
 
+import useLoading from "@/components/loading/useLoading";
 import useToast from "@/components/toast/useToast";
 import { createTransaction } from "@/lib/actions/transactions";
 import { useActionState, useEffect } from "react";
@@ -19,12 +20,21 @@ export default function CreateTransactionForm({
 }) {
     const [state, formAction, pending] = useActionState(createTransaction, undefined);
     const { showToast } = useToast();
+    const { startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         if (state?.error) {
             showToast(state.error, "error");
         }
     }, [showToast, state]);
+
+    useEffect(() => {
+        if (pending) {
+            startLoading();
+        } else {
+            stopLoading();
+        }
+    }, [pending, startLoading, stopLoading])
 
     return (
         <form action={formAction} className="p-4 rounded-md bg-slate-900 flex flex-col gap-2 max-w-sm text-slate-300">

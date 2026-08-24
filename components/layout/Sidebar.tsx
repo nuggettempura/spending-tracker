@@ -14,9 +14,9 @@ export function Sidebar() {
     return (
         <aside className="hidden md:flex md:w-60 md:flex-col bg-slate-900 text-slate-300 shrink-0">
             {/* TODO 1: logo/woodmark block */}
-            <div className="p-4">
+            <div className="p-4 flex justify-between items-center gap-4">
                 <h1 className="font-bold text-white">Spending Tracker</h1>
-                <Image src="/icons/icon-32px.png" alt="Logo" width={40} height={40} />
+                <Image src="/icons/icon-32px.png" alt="Logo" width={25} height={25} />
             </div>
             <nav className="flex-1 px-3 space-y-1">
                 {navigations.map((item) => (
@@ -31,12 +31,12 @@ export function Sidebar() {
                 ))}
             </nav>
             <form
-                className="flex flex-col justify-end items-center"
+                className="flex flex-col justify-end items-center p-4"
                 action={logout}
             >
                 <button
                     type="submit"
-                    className="px-2 py-1.5 bg-blue-600 text-white border-blue-600 rounded-md"
+                    className="px-2 py-1.5 bg-blue-600 text-white border-blue-600 rounded-md w-full cursor-pointer hover:bg-blue-900 hover:border-blue-900 transition-all"
                 >
                     Logout
                 </button>

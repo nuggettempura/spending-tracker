@@ -1,5 +1,6 @@
 "use client"
 
+import useLoading from "@/components/loading/useLoading";
 import useToast from "@/components/toast/useToast";
 import { CategoriesRowProps } from "@/interfaces/categories";
 import { deleteCategories, updateCategories } from "@/lib/actions/categories";
@@ -18,6 +19,7 @@ export default function CategoryRow({ categoryId, categoryName, categoryType, ca
     const [deleteState, deleteFormAction, deletePending] = useActionState(deleteCategoryWithId, undefined);
 
     const { showToast } = useToast();
+    const { startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         if (updateState?.error) {
@@ -28,6 +30,22 @@ export default function CategoryRow({ categoryId, categoryName, categoryType, ca
             showToast(deleteState?.error, "error")
         }
     }, [updateState, deleteState, showToast]);
+
+    useEffect(() => {
+        if (updatePending) {
+            startLoading();
+        } else {
+            stopLoading();
+        }
+    }, [updatePending, startLoading, stopLoading]);
+
+    useEffect(() => {
+        if (deletePending) {
+            startLoading();
+        } else {
+            stopLoading();
+        }
+    }, [stopLoading, startLoading, deletePending])
 
     return (
         <li className="flex justify-between items-center border border-slate-900 bg-slate-900 rounded-md p-3">

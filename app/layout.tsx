@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google"
 import "./globals.css";
 import ToastProvider from "@/components/toast/ToastProvider";
+import LoadingProvider from "@/components/loading/LoadingProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
@@ -57,9 +58,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`min-h-full ${inter.className}`}>
-        <ToastProvider>
-          {children}
-        </ToastProvider>
+        <LoadingProvider>
+          <ToastProvider>
+            {children}
+          </ToastProvider>
+        </LoadingProvider>
       </body>
     </html>
   );

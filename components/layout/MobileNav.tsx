@@ -11,27 +11,20 @@ export function MobileNav() {
     const navigations = NAV_ITEMS;
 
     return (
-        <nav className="md:hidden fixed bottom-0 inset-x-0 bg-slate-900 border-t border-slate-800 flex justify-around py-2 z-10">
-            {navigations.map((item) => (
-                <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`flex flex-col items-center px-3 py-1.5 text-xs font-medium hover:text-white ${pathname === item.href || pathname.startsWith(item.href + "/") ? "text-white" : "text-slate-300"}`}
-
-                >
-                    <item.icon className="h-5 w-5 mb-1" aria-hidden="true" />
-                    {item.label}
-                </Link>
-            ))}
-
-            <form action={logout}>
-                <button
-                    type="submit"
-                    className="px-2 py-1.5 bg-blue-600 text-white border-blue-600 rounded-md"
-                >
-                    Logout
-                </button>
-            </form>
-        </nav>
+        <div>
+            <h2 className="text-xl font-semibold my-4">Features</h2>
+            <nav className="md:hidden grid grid-row-2 grid-cols-2 gap-2 min-h-20">
+                {navigations.map((item) => (
+                    <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`flex flex-col items-center justify-center px-4 py-2 text-sm bg-slate-900 border-slate-900 font-medium text-white rounded-sm`}
+                    >
+                        <item.icon className="h-5 w-5 mb-1" aria-hidden="true" />
+                        {item.label}
+                    </Link>
+                ))}
+            </nav>
+        </div>
     )
 }

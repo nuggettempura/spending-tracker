@@ -1,15 +1,16 @@
 "use client"
 
 import { signUp } from "@/lib/actions/auth"
+import Link from "next/link";
 import { useActionState } from "react"
 
 export default function SignUp() {
     const [state, formAction, pending] = useActionState(signUp, undefined);
 
     return (
-        <form action={formAction} className="flex flex-col justify-center items-center gap-2 border border-slate-300 rounded-md p-4 bg-[#1F305e]">
+        <form action={formAction} className="flex flex-col justify-center items-center gap-2 border border-slate-700 rounded-md p-6 bg-[#1F305e] max-w-87.5 min-w-68.75">
             <p className="text-xl text-slate-200 mb-4">Sign Up</p>
-            <div className="flex flex-col items-start gap-2">
+            <div className="flex flex-col items-start gap-2 w-full">
                 <label
                     className="text-slate-500"
                     htmlFor="emailInput"
@@ -18,12 +19,12 @@ export default function SignUp() {
                 </label>
                 <input
                     id="emailInput"
-                    className="border border-slate-400 rounded-sm text-white px-2 py-1"
+                    className="px-2 py-1.5 w-full border border-slate-400 rounded-sm text-white"
                     type="email"
                     name="email"
                 />
             </div>
-            <div className="flex flex-col items-start gap-2">
+            <div className="flex flex-col items-start gap-2 w-full">
                 <label
                     className="text-slate-500"
                     htmlFor="passwordInput"
@@ -32,12 +33,12 @@ export default function SignUp() {
                 </label>
                 <input
                     id="passwordInput"
-                    className="border border-slate-400 rounded-sm text-white px-2 py-1"
+                    className="px-2 py-1.5 w-full border border-slate-400 rounded-sm text-white"
                     type="password"
                     name="password"
                 />
             </div>
-            <div className="flex flex-col items-start gap-2">
+            <div className="flex flex-col w-full items-start gap-2">
                 <label
                     className="text-slate-500"
                     htmlFor="passwordCheckInput"
@@ -46,12 +47,12 @@ export default function SignUp() {
                 </label>
                 <input
                     id="passwordCheckInput"
-                    className="border border-slate-400 rounded-sm text-white px-2 py-1"
+                    className="px-2 py-1.5 w-full border border-slate-400 rounded-sm text-white"
                     type="password"
                     name="passwordCheck"
                 />
             </div>
-            <div className="flex flex-col items-start gap-2">
+            <div className="flex flex-col items-start gap-2 w-full">
                 <label
                     className="text-slate-500"
                     htmlFor="displayName"
@@ -60,7 +61,7 @@ export default function SignUp() {
                 </label>
                 <input
                     id="displayName"
-                    className="border border-slate-400 rounded-sm text-white px-2 py-1"
+                    className="px-2 py-1 w-full border border-slate-400 rounded-sm text-white"
                     type="text"
                     name="displayName"
                 />
@@ -72,6 +73,15 @@ export default function SignUp() {
             >
                 {pending ? "Pending" : "Sign Up"}
             </button>
+            <div className="my-2 flex items-center justify-center gap-1">
+                <span className="text-slate-300 text-sm">Already have an account?</span>
+                <Link
+                    href={'/login'}
+                    className="text-white text-sm hover:text-slate-300 active:text-slate-300 no-underline"
+                >
+                    Login
+                </Link>
+            </div>
         </form>
     )
 }

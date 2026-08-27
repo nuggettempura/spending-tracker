@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { MobileNav } from "@/components/layout/MobileNav";
 
 function formatMoney(amount: number) {
     const formatted = Math.abs(amount).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -19,7 +20,7 @@ export default async function DashboardPage() {
     const totalBalance = accounts?.reduce((sum, account) => sum + account.current_balance, 0) ?? 0;
 
     return (
-        <div className="p-5 md:p-8">
+        <div className="p-5 md:p-8 mt-8 md:mt-0">
             <h1 className="text-2xl font-bold">
                 Hello, Adam!
             </h1>
@@ -69,6 +70,7 @@ export default async function DashboardPage() {
                     <p className="text-slate-400">No transactions yet.</p>
                 )}
             </div>
+            <MobileNav />
         </div>
     )
 }

@@ -4,6 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
 
+  if (request.nextUrl.pathname.startsWith("/auth")) {
+    return supabaseResponse;
+  }
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -29,7 +33,7 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isPublicRoute = ["/login", "/signup"].includes(
+  const isPublicRoute = ["/login", "/signup", "/passwordrecovery"].includes(
     request.nextUrl.pathname,
   );
 

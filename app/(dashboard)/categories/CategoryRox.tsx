@@ -48,19 +48,19 @@ export default function CategoryRow({ categoryId, categoryName, categoryType, ca
     }, [stopLoading, startLoading, deletePending])
 
     return (
-        <li className="flex justify-between items-center border border-slate-900 bg-slate-900 rounded-md p-3">
-            <p className="test-slate-300 font-semibold text-slate-300">{categoryName}</p>
+        <li className="flex justify-between items-center bg-white rounded-sm p-3">
+            <p className="text-black text-sm font-semibold">{categoryName}</p>
             <div className="flex justify-between items-center gap-3">
-                <p className="test-slate-300 font-semibold text-slate-300">{categoryType}</p>
+                <p className="text-sm font-semibold">{categoryType}</p>
                 <button
                     onClick={() => categoryUpdateDialogRef.current?.showModal()}
-                    className="border border-yellow-500 bg-yellow-500 px-4 py-2 text-sm hover:border-yellow-600 hover:bg-yellow-600 transition-all rounded-sm cursor-pointer"
+                    className="border border-yellow-500 bg-yellow-500 px-4 py-2 text-sm text-white min-w-10.5 hover:border-yellow-600 hover:bg-yellow-600  transition-all rounded-sm cursor-pointer"
                 >
                     Edit
                 </button>
                 <button
                     onClick={() => categoryDeleteDialogRef.current?.showModal()}
-                    className="border border-red-500 bg-red-500 px-2 py-1.5 text-sm text-slate-200 hover:border-red-600 hover:bg-red-600 transition-all rounded-sm cursor-pointer"
+                    className="border border-red-500 bg-red-500 px-4 py-2 text-sm text-slate-200 hover:border-red-600 hover:bg-red-600 transition-all rounded-sm cursor-pointer min-w-10.5"
                 >
                     Delete
                 </button>

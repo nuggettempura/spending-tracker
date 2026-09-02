@@ -62,9 +62,9 @@ export default function TransactionRow({ accountId, accountsDropdown, account, c
     }, [stopLoading, startLoading, deletePending])
 
     return (
-        <li className="border border-slate-900 bg-slate-900 rounded-md p-3 flex justify-between items-center">
+        <li className="bg-white rounded-md p-3 flex justify-between items-center">
             <div>
-                <span className="text-slate-300">{transactionDescription} <span className="text-slate-400">({type})</span></span>
+                <span className="text-sm">{transactionDescription} <span className="text-sm">({type})</span></span>
             </div>
             <div className="flex items-center gap-4">
                 <span className="text-white">${transactionAmount.toFixed(2)}</span>
@@ -76,7 +76,7 @@ export default function TransactionRow({ accountId, accountsDropdown, account, c
                 </button>
                 <button
                     onClick={() => deleteDialogRef.current?.showModal()}
-                    className="border border-red-500 bg-red-500 px-2 py-1.5 text-sm text-slate-200 hover:border-red-600 hover:bg-red-600 transition-all rounded-sm cursor-pointer"
+                    className="border border-red-500 bg-red-500 px-4 py-2 text-sm text-slate-200 hover:border-red-600 hover:bg-red-600 transition-all rounded-sm cursor-pointer"
                 >
                     {deletePending ? "Deleting..." : "Delete"}
                 </button>

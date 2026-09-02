@@ -24,11 +24,11 @@ export default async function DashboardPage() {
             <h1 className="text-2xl font-bold">
                 Hello, Adam!
             </h1>
-            <div className="p-4 mx-auto flex flex-col justify-around items-center bg-blue-950">
+            <div className="p-4 mx-auto flex flex-col justify-around items-center bg-white rounded-sm">
                 {hasAccounts ? (
                     <div>
-                        <p className="text-slate-300">Total Balance</p>
-                        <h2 className="text-white text-xl font-semibold">{formatMoney(totalBalance)}</h2>
+                        <p className="font-semibold">Total Balance</p>
+                        <h2 className="text-xl font-bold text-green-700">{formatMoney(totalBalance)}</h2>
                     </div>
                 ) : (
                     <div className="text-center">
@@ -43,7 +43,7 @@ export default async function DashboardPage() {
                 <p className="font-semibold">Recent transactions</p>
                 <Link
                     href="/transactions"
-                    className="bg-green-500 border-green-500 text-gray-700 rounded-md px-3 py-1.5 font-slate-300 text-sm hover:bg-green-700 hover:text-white hover:border-green-700"
+                    className="bg-green-500 border-green-500 text-gray-700 font-semibold rounded-md px-3 py-1.5 font-slate-300 text-sm hover:bg-green-700 hover:text-white hover:border-green-700"
                 >
                     + Add
                 </Link>

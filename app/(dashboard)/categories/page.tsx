@@ -30,7 +30,7 @@ export default async function CategoriesPage() {
                     ))}
                 </ul>
             ) : (
-                !error && <p className="mb-6">You don&apos;t have any categories yet. Add your first one below</p>
+                !error && <p className="mb-6 text-sm">You don&apos;t have any categories yet. Add your first one below</p>
             )}
 
             <CreateCategoryForm />

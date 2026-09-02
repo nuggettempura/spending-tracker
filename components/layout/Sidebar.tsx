@@ -12,10 +12,10 @@ export function Sidebar() {
     const navigations = NAV_ITEMS;
 
     return (
-        <aside className="hidden md:flex md:w-60 md:flex-col bg-slate-900 text-slate-300 shrink-0">
+        <aside className="hidden md:flex md:w-60 md:flex-col bg-white  shrink-0 shadow-md">
             {/* TODO 1: logo/woodmark block */}
-            <div className="p-4 flex justify-between items-center gap-4">
-                <h1 className="font-bold text-white">Spending Tracker</h1>
+            <div className="p-4 flex justify-center items-center gap-4">
+                <h1 className="font-bold">Spending Tracker</h1>
                 <Image src="/icons/icon-32px.png" alt="Logo" width={25} height={25} />
             </div>
             <nav className="flex-1 px-3 space-y-1">
@@ -23,7 +23,7 @@ export function Sidebar() {
                     <Link
                         key={item.href}
                         href={item.href}
-                        className={`flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-slate-800 hover:text-white ${pathname === item.href || pathname.startsWith(item.href + "/") ? "bg-slate-800 text-white" : "text-slate-300"}`}
+                        className={`flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-black hover:text-white ${pathname === item.href || pathname.startsWith(item.href + "/") ? "bg-black text-white" : "text-black"}`}
                     >
                         <item.icon className="mr-3 h-5 w-5 shrink-0" aria-hidden="true" />
                         {item.label}
@@ -36,7 +36,7 @@ export function Sidebar() {
             >
                 <button
                     type="submit"
-                    className="px-2 py-1.5 bg-blue-600 text-white border-blue-600 rounded-md w-full cursor-pointer hover:bg-blue-900 hover:border-blue-900 transition-all"
+                    className="px-4 py-2 bg-black rounded-sm w-full text-sm cursor-pointer text-white hover:text-black hover:bg-gray-100 hover:border-slate-300 transition-all"
                 >
                     Logout
                 </button>

@@ -18,7 +18,7 @@ export function MobileNav() {
                     <Link
                         key={item.href}
                         href={item.href}
-                        className={`flex flex-col items-center justify-center px-4 py-2 text-sm bg-slate-900 border-slate-900 font-medium text-white rounded-sm`}
+                        className={`flex flex-col items-center justify-center px-4 py-2 text-sm bg-white border-slate-300 font-medium rounded-sm hover:bg-black hover:text-white ${pathname === item.href || pathname.startsWith(item.href + "/") ? "bg-black text-white" : "text-black"}`}
                     >
                         <item.icon className="h-5 w-5 mb-1" aria-hidden="true" />
                         {item.label}

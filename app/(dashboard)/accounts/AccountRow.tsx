@@ -53,7 +53,7 @@ export default function AccountRow({ accountId, name, accountType, currentBalanc
 
 
     return (
-        <li className="border border-slate-300 rounded-md p-3 flex justify-between items-center">
+        <li className="bg-white border border-slate-300 rounded-md p-3 flex justify-between items-center">
             <div>
                 <span>{name} <span className="text-slate-400 text-sm">({accountType})</span></span>
             </div>

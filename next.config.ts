@@ -1,13 +1,7 @@
 import { NextConfig } from "next";
+import { env } from "./lib/env";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-
-if (!supabaseUrl) {
-  throw new Error(
-    "Can't found the storage bucket variables set for this application",
-  );
-}
-
+const supabaseUrl = env.supabaseUrl;
 const supabaseHost = new URL(supabaseUrl).hostname;
 
 const nextConfig: NextConfig = {

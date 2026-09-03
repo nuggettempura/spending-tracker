@@ -3,9 +3,10 @@ import { Inter } from "next/font/google"
 import "./globals.css";
 import ToastProvider from "@/components/toast/ToastProvider";
 import LoadingProvider from "@/components/loading/LoadingProvider";
+import { env } from "@/lib/env";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(env.siteUrl),
   title: {
     default: "Spending Tracker",
     template: "%s | Spending Tracker",

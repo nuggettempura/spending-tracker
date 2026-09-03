@@ -8,13 +8,14 @@ import { usePathname } from "next/navigation"
 
 export function MobileNav() {
     const pathname = usePathname();
-    const navigations = NAV_ITEMS;
+    const navigations = NAV_ITEMS
+    const withoutDashboardNav = navigations.filter((item) => item.href !== "/")
 
     return (
         <div>
             <h2 className="text-xl font-semibold my-4">Features</h2>
             <nav className="md:hidden grid grid-row-2 grid-cols-2 gap-2 min-h-20">
-                {navigations.map((item) => (
+                {withoutDashboardNav.map((item) => (
                     <Link
                         key={item.href}
                         href={item.href}

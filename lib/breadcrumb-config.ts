@@ -2,6 +2,7 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   accounts: "Accounts",
   transactions: "Transactions",
   categories: "Categories",
+  profile: "Profile",
 };
 
 export type Crumb = { label: string; href: string };

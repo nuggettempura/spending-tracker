@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "../supabase/server";
+import { env } from "../env";
 
 export async function login(
   _prevState: { error?: string } | undefined,
@@ -60,7 +61,7 @@ export async function passwordRecovery(
   const username = formData.get("email") as string;
   const supabase = await createClient();
   const { error } = await supabase.auth.resetPasswordForEmail(username, {
-    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/confirm?next=/update-password`,
+    redirectTo: `${env.siteUrl}/auth/confirm?next=/update-password`,
   });
 
   if (error) {
